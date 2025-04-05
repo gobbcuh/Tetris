@@ -25,7 +25,32 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
+        
+        // Game Loop
+        double drawInterval = 1000000000 / FPS; // Time per frame in nanoseconds
+        double delta = 0; // Time difference
+        long lastTime = System.nanoTime(); // Get the current time in nanoseconds
+        long currentTime; // Current time in nanoseconds
+
+        while(gameThread != null) {
+            currentTime = System.nanoTime(); // Get the current time in nanoseconds
+            delta += (currentTime - lastTime) / drawInterval; // Calculate the time difference
+            lastTime = currentTime; // Update the last time
+
+            if(delta >= 1) { // If enough time has passed
+                update(); // Update the game state
+                repaint(); // Repaint the panel
+                delta--; // Decrease delta by 1
+            }
+        }
+    }
+
+    private void update() {
+
+    }
+
+    private void paintComponent(Graphics g) {
+        super.paintComponent(g); // Call the parent class's paintComponent method
+
     }
 }
