@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Graphics2D;
+
 public class PlayManager {
 
     // Main Play Area
@@ -17,5 +19,13 @@ public class PlayManager {
         right_x = left_x + WIDTH;
         top_y = 50;
         bottom_y = top_y + HEIGHT;
+    }
+
+    public void update() {
+
+    }
+
+    public void draw(Graphics2D g2) {
+
     }
 }
