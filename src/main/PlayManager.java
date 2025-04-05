@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 public class PlayManager {
 
     // Main Play Area
-    final int WIDTH = 360;
-    final int HEIGHT = 600;
+    final int WIDTH = 320;
+    final int HEIGHT = 560;
     public static int left_x;
     public static int right_x;
     public static int top_y;
@@ -33,5 +33,11 @@ public class PlayManager {
         g2.setColor(Color.WHITE);
         g2.setStroke(new BasicStroke(4f));
         g2.drawRect(left_x-4, top_y-4, WIDTH, HEIGHT); // Draw the play area frame
+    
+        // Draw Next Mino Frame
+        int x = right_x + 100;
+        int y = bottom_y - 200;
+        g2.drawRect(x, y, 200, 200);
+
     }
 }

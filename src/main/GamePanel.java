@@ -54,10 +54,10 @@ public class GamePanel extends JPanel implements Runnable {
         pm.update();
     }
 
-    private void paintComponent(Graphics g) {
-        super.paintComponent(g); // Call the parent class's paintComponent method
-
-        Graphics2D g2 = (Graphics2D) g; // Cast Graphics to Graphics2D
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
         pm.draw(g2);
     }
 }
