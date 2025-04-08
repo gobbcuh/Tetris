@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import mino.Mino;
+import mino.Block;
 
 public class PlayManager {
 
@@ -16,6 +18,11 @@ public class PlayManager {
     public static int top_y;
     public static int bottom_y;
 
+    // Mino
+    Mino currentMino;
+    final int MINO_START_X;
+    final int MINO_START_Y;
+
     public PlayManager() {
 
         // Main Play Area Frame
@@ -23,6 +30,9 @@ public class PlayManager {
         right_x = left_x + WIDTH;
         top_y = 50;
         bottom_y = top_y + HEIGHT;
+
+        MINO_START_X = left_x + (WIDTH / 2) - Block.SIZE;
+        MINO_START_Y = top_y + Block.SIZE;
     }
 
     public void update() {
