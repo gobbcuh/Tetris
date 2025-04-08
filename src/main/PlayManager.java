@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import mino.Mino;
 import mino.Block;
+import mino.Mino_L1;
 
 public class PlayManager {
 
@@ -23,6 +24,9 @@ public class PlayManager {
     final int MINO_START_X;
     final int MINO_START_Y;
 
+    // Others
+    public static int dropInterval = 60; // 60 frames
+
     public PlayManager() {
 
         // Main Play Area Frame
@@ -33,10 +37,14 @@ public class PlayManager {
 
         MINO_START_X = left_x + (WIDTH / 2) - Block.SIZE;
         MINO_START_Y = top_y + Block.SIZE;
+
+        // Setting the Starting Mino
+        currentMino = new mino.Mino_L1();
+        currentMino.setXY(MINO_START_X, MINO_START_Y);
     }
 
     public void update() {
-
+        currentMino.update();
     }
 
     public void draw(Graphics2D g2) {
@@ -54,5 +62,9 @@ public class PlayManager {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.drawString("NEXT", x + 60, y + 60);
 
+        // Draw Current Mino
+        if(currentMino != null) {
+            currentMino.draw(g2);
+        }
     }
 }
