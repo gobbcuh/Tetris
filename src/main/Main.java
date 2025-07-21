@@ -12,7 +12,7 @@ public class Main {
         // Add the GamePanel to the Window
         GamePanel gp = new GamePanel();
         window.add(gp);
-        window.pack(); // Adjust the window size to fit the panel
+        window.pack();
 
         window.setLocationRelativeTo(null); // Center the window on the screen
         window.setVisible(true);
