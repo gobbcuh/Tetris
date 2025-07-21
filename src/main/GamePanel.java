@@ -8,19 +8,19 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     final int FPS = 60;
     Thread gameThread;
     PlayManager pm;
 
     public GamePanel() {
-        // Panel Settings
+        // panel settings
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.BLACK);
         this.setLayout(null);
         
-        // Implement KeyListener
+        // key listener
         this.addKeyListener(new KeyHandler());
         this.setFocusable(true);
 
@@ -28,28 +28,28 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void launchGame() {
-        gameThread = new Thread(this); // Create a new thread for the game loop
-        gameThread.start(); // Start the game loop
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
     @Override
     public void run() {
         
-        // Game Loop
-        double drawInterval = 1000000000 / FPS; // Time per frame in nanoseconds
-        double delta = 0; // Time difference
-        long lastTime = System.nanoTime(); // Get the current time in nanoseconds
-        long currentTime; // Current time in nanoseconds
+        // game loop
+        double drawInterval = 1000000000 / FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
 
         while(gameThread != null) {
-            currentTime = System.nanoTime(); // Get the current time in nanoseconds
-            delta += (currentTime - lastTime) / drawInterval; // Calculate the time difference
-            lastTime = currentTime; // Update the last time
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
 
-            if(delta >= 1) { // If enough time has passed
-                update(); // Update the game state
-                repaint(); // Repaint the panel
-                delta--; // Decrease delta by 1
+            if(delta >= 1) {
+                update();
+                repaint();
+                delta--;
             }
         }
     }

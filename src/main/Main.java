@@ -9,12 +9,12 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
 
-        // Add the GamePanel to the Window
+        // game panel addition
         GamePanel gp = new GamePanel();
         window.add(gp);
         window.pack();
 
-        window.setLocationRelativeTo(null); // Center the window on the screen
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
 
         gp.launchGame();
