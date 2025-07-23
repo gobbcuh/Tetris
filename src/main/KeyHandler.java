@@ -17,10 +17,10 @@ public class KeyHandler implements KeyListener {
             upPressed = true;
         }
         if (code == KeyEvent.VK_A) {
-            downPressed = true;
+            leftPressed = true;
         }
         if (code == KeyEvent.VK_S) {
-            leftPressed = true;
+            downPressed = true;
         }
         if (code == KeyEvent.VK_D) {
             rightPressed = true;

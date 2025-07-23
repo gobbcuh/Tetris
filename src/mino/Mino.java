@@ -9,7 +9,8 @@ import main.PlayManager;
 public class Mino {
     public Block b[] = new Block[4];
     public Block tempB[] = new Block[4];
-    int autoDropCunter = 0;
+    int autoDropCounter = 0;
+    public int direction = 1; // has 4 directions
 
     public void create(Color c) {
         b[0] = new Block(c);
@@ -24,10 +25,15 @@ public class Mino {
 
     public void setXY(int x, int y) {}
     public void updateXY(int direction) {}
+    public void getDirection() {}
+    public void getDirection2() {}
+    public void getDirection3() {}
+    public void getDirection4() {}
     public void update() {
 
-        // Move Mino
+        // move mino
         if(KeyHandler.upPressed) {
+
         }
         if(KeyHandler.downPressed) {
             b[0].y += Block.SIZE;
@@ -35,8 +41,8 @@ public class Mino {
             b[2].y += Block.SIZE;
             b[3].y += Block.SIZE;
 
-            // When moved down, rest the auto drop counter
-            autoDropCunter = 0;
+            // when moved down, reset the auto drop counter
+            autoDropCounter = 0;
             KeyHandler.downPressed = false;
         }
         if(KeyHandler.leftPressed) {
@@ -56,21 +62,23 @@ public class Mino {
             KeyHandler.rightPressed = false;
         }
 
-        autoDropCunter++;
-        if (autoDropCunter == PlayManager.dropInterval) {
+        autoDropCounter++;
+        if (autoDropCounter == PlayManager.dropInterval) {
             b[0].y += Block.SIZE;
             b[1].y += Block.SIZE;
             b[2].y += Block.SIZE;
             b[3].y += Block.SIZE;
-            autoDropCunter = 0;
+            autoDropCounter = 0;
         }
     }
     public void draw(Graphics2D g2) {
+
         int margin = 2;
+
         g2.setColor(b[0].c);
-        g2.fillRect(b[0].x + margin, b[0].y, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
-        g2.fillRect(b[1].x + margin, b[1].y, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
-        g2.fillRect(b[2].x + margin, b[2].y, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
-        g2.fillRect(b[3].x + margin, b[3].y, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
+        g2.fillRect(b[0].x + margin, b[0].y + margin, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
+        g2.fillRect(b[1].x + margin, b[1].y + margin, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
+        g2.fillRect(b[2].x + margin, b[2].y + margin, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
+        g2.fillRect(b[3].x + margin, b[3].y + margin, Block.SIZE - (margin * 2), Block.SIZE - (margin * 2));
     }
 }

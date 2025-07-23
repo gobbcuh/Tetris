@@ -24,7 +24,7 @@ public class PlayManager {
     final int MINO_START_X;
     final int MINO_START_Y;
 
-    // Others
+    // others
     public static int dropInterval = 60;
 
     public PlayManager() {
@@ -38,7 +38,8 @@ public class PlayManager {
         MINO_START_X = left_x + (WIDTH / 2) - Block.SIZE;
         MINO_START_Y = top_y + Block.SIZE;
 
-        currentMino = new mino.Mino_L1();
+        // starting mino
+        currentMino = new Mino_L1();
         currentMino.setXY(MINO_START_X, MINO_START_Y);
     }
 
@@ -53,7 +54,7 @@ public class PlayManager {
         g2.setStroke(new BasicStroke(4f));
         g2.drawRect(left_x-4, top_y-4, WIDTH+8, HEIGHT+8);
     
-        // mino frame
+        // drew next mino frame
         int x = right_x + 100;
         int y = bottom_y - 200;
         g2.drawRect(x, y, 200, 200);
@@ -61,7 +62,7 @@ public class PlayManager {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.drawString("NEXT", x + 60, y + 60);
 
-        // current mino
+        // drew current mino
         if(currentMino != null) {
             currentMino.draw(g2);
         }
