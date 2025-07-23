@@ -31,6 +31,7 @@ public class PlayManager {
 
     // others
     public static int dropInterval = 60;
+    boolean gameOver;
 
     // effects
     boolean effectCounterOn;
@@ -86,6 +87,11 @@ public class PlayManager {
             staticBlocks.add(currentMino.b[1]);
             staticBlocks.add(currentMino.b[2]);
             staticBlocks.add(currentMino.b[3]);
+
+            // checks if the game is over
+            if(currentMino.b[0].x == MINO_START_X && currentMino.b[0].y == MINO_START_Y) {
+                gameOver = true;
+            }
 
             currentMino.deactivating = false;
 
