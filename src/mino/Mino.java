@@ -13,6 +13,8 @@ public class Mino {
     public int direction = 1; // has 4 directions
     boolean leftCollision, rightCollision, bottomCollision;
     public boolean active = true;
+    boolean deactivating;
+    int deactivateCounter = 0;
 
     public void create(Color c) {
         b[0] = new Block(c);
@@ -55,6 +57,8 @@ public class Mino {
         rightCollision = false;
         bottomCollision = false;
 
+        checkStaticBlockCollision();
+
         // frame collision checking
         // left
         for (int i = 0; i < b.length; i++) {
@@ -81,6 +85,8 @@ public class Mino {
         rightCollision = false;
         bottomCollision = false;
 
+        checkStaticBlockCollision();
+
         // frame collision checking
         // left
         for (int i = 0; i < b.length; i++) {
@@ -98,6 +104,36 @@ public class Mino {
         for  (int i = 0; i < b.length; i++) {
             if (tempB[i].y + Block.SIZE > PlayManager.bottom_y) {
                 bottomCollision = true;
+            }
+        }
+    }
+
+    private void checkStaticBlockCollision() {
+
+        for(int i = 0; i < PlayManager.staticBlocks.size(); i++) {
+
+            int targetX = PlayManager.staticBlocks.get(i).x;
+            int targetY = PlayManager.staticBlocks.get(i).y;
+
+            // down
+            for (int j = 0; j < b.length; j++) {
+                if(b[j].y + Block.SIZE == targetY && b[j].x == targetX) {
+                    bottomCollision = true;
+                }
+            }
+
+            // left
+            for (int  j = 0; j < b.length; j++) {
+                if(b[j].x - Block.SIZE == targetX && b[j].y == targetY) {
+                    leftCollision = true;
+                }
+            }
+
+            //right
+            for (int  j = 0; j < b.length; j++) {
+                if(b[j].x + Block.SIZE == targetX && b[j].y == targetY) {
+                    rightCollision = true;
+                }
             }
         }
     }
