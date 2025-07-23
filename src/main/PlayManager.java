@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.Random;
 
 import mino.*;
@@ -23,6 +24,10 @@ public class PlayManager {
     Mino currentMino;
     final int MINO_START_X;
     final int MINO_START_Y;
+    Mino nextMino;
+    final int NEXTMINO_X;
+    final int NEXTMINO_Y;
+    public static ArrayList<Block> staticBlocks = new ArrayList<>();
 
     // others
     public static int dropInterval = 60;
@@ -38,9 +43,14 @@ public class PlayManager {
         MINO_START_X = left_x + (WIDTH / 2) - Block.SIZE;
         MINO_START_Y = top_y + Block.SIZE;
 
+        NEXTMINO_X = right_x + 175;
+        NEXTMINO_Y = top_y + 500;
+
         // starting mino
         currentMino = pickMino();
         currentMino.setXY(MINO_START_X, MINO_START_Y);
+        nextMino = pickMino();
+        nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
     }
 
     private Mino pickMino() {
@@ -84,6 +94,9 @@ public class PlayManager {
         if(currentMino != null) {
             currentMino.draw(g2);
         }
+
+        // drew next mino
+        nextMino.draw(g2);
 
         // drew pause
         g2.setColor(Color.YELLOW);
