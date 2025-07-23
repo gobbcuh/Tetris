@@ -9,7 +9,7 @@ public class Sound {
     URL url[] = new URL[10];
 
     public Sound() {
-        url[0] = getClass().getResource("sounds/music.wav");
+        url[0] = getClass().getResource("/theme.wav");
         url[1] = getClass().getResource("/delete line.wav");
         url[2] = getClass().getResource("/gameover.wav");
         url[3] = getClass().getResource("/rotation.wav");
