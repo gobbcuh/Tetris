@@ -83,30 +83,40 @@ public class Mino {
             }
             KeyHandler.upPressed = false;
         }
-        if(KeyHandler.downPressed) {
-            b[0].y += Block.SIZE;
-            b[1].y += Block.SIZE;
-            b[2].y += Block.SIZE;
-            b[3].y += Block.SIZE;
+        checkMovementCollision();
 
-            // when moved down, reset the auto drop counter
-            autoDropCounter = 0;
+        if(KeyHandler.downPressed) {
+
+            // if mino's bottom is not hitting, it can go down
+            if(bottomCollision == false) {
+                b[0].y += Block.SIZE;
+                b[1].y += Block.SIZE;
+                b[2].y += Block.SIZE;
+                b[3].y += Block.SIZE;
+
+                // when moved down, reset the auto drop counter
+                autoDropCounter = 0;
+            }
             KeyHandler.downPressed = false;
         }
         if(KeyHandler.leftPressed) {
-            b[0].x -= Block.SIZE;
-            b[1].x -= Block.SIZE;
-            b[2].x -= Block.SIZE;
-            b[3].x -= Block.SIZE;
 
+            if(leftCollision == false) {
+                b[0].x -= Block.SIZE;
+                b[1].x -= Block.SIZE;
+                b[2].x -= Block.SIZE;
+                b[3].x -= Block.SIZE;
+            }
             KeyHandler.leftPressed = false;
         }
         if(KeyHandler.rightPressed) {
-            b[0].x += Block.SIZE;
-            b[1].x += Block.SIZE;
-            b[2].x += Block.SIZE;
-            b[3].x += Block.SIZE;
 
+            if(rightCollision == false) {
+                b[0].x += Block.SIZE;
+                b[1].x += Block.SIZE;
+                b[2].x += Block.SIZE;
+                b[3].x += Block.SIZE;
+            }
             KeyHandler.rightPressed = false;
         }
 
