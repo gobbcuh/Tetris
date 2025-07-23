@@ -72,7 +72,25 @@ public class PlayManager {
     }
 
     public void update() {
-        currentMino.update();
+
+        // checks if the current mino is active
+        if(currentMino.active == false) {
+
+            // put it into static block if not
+            staticBlocks.add(currentMino.b[0]);
+            staticBlocks.add(currentMino.b[1]);
+            staticBlocks.add(currentMino.b[2]);
+            staticBlocks.add(currentMino.b[3]);
+
+            // replaces current with next mino
+            currentMino = nextMino;
+            currentMino.setXY(MINO_START_X, MINO_START_Y);
+            nextMino = pickMino();
+            nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
+        }
+        else {
+            currentMino.update();
+        }
     }
 
     public void draw(Graphics2D g2) {
@@ -97,6 +115,11 @@ public class PlayManager {
 
         // drew next mino
         nextMino.draw(g2);
+
+        // drew static blocks
+        for(int i = 0; i < staticBlocks.size(); ++i) {
+            staticBlocks.get(i).draw(g2);
+        }
 
         // drew pause
         g2.setColor(Color.YELLOW);
