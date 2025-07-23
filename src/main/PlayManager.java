@@ -32,6 +32,11 @@ public class PlayManager {
     // others
     public static int dropInterval = 60;
 
+    // effects
+    boolean effectCounterOn;
+    int effectCounter;
+    ArrayList<Integer> effectY = new ArrayList<>();
+
     public PlayManager() {
 
         // main area frame
@@ -117,9 +122,18 @@ public class PlayManager {
 
                 if(blockCount == 12) {
 
+                    effectCounterOn = true;
+                    effectY.add(y);
+
                     for(int i = staticBlocks.size() - 1; i > -1; i--) {
                         if(staticBlocks.get(i).y == y) {
                             staticBlocks.remove(i);
+                        }
+                    }
+
+                    for(int i = 0; i < staticBlocks.size(); i++) {
+                        if(staticBlocks.get(i).y < y) {
+                            staticBlocks.get(i).y += Block.SIZE;
                         }
                     }
                 }
@@ -157,6 +171,22 @@ public class PlayManager {
         // drew static blocks
         for(int i = 0; i < staticBlocks.size(); ++i) {
             staticBlocks.get(i).draw(g2);
+        }
+
+        //drew effect
+        if(effectCounterOn) {
+            effectCounter++;
+
+            g2.setColor(Color.RED);
+            for(int i = 0; i < effectY.size(); i++) {
+                g2.fillRect(left_x, effectY.get(i), WIDTH, Block.SIZE);
+            }
+
+            if(effectCounter == 10) {
+                effectCounterOn = false;
+                effectCounter = 0;
+                effectY.clear();
+            }
         }
 
         // drew pause
