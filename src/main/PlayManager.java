@@ -195,14 +195,26 @@ public class PlayManager {
             }
         }
 
-        // drew pause
+        // drew pause & game over
         g2.setColor(Color.YELLOW);
         g2.setFont(g2.getFont().deriveFont(50f));
 
-        if(KeyHandler.pausePressed) {
+        if(gameOver) {
+            x = left_x + 25;
+            y = top_y + 320;
+            g2.drawString("GAME OVER", x, y);
+        }
+        else if(KeyHandler.pausePressed) {
             x = left_x + 70;
             y = top_y + 320;
             g2.drawString("PAUSED", x, y);
         }
+
+        // drew game title
+        x = 35;
+        y = top_y + 320;
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("New Courier", Font.ITALIC, 60));
+        g2.drawString("Tetris by Jasmin", x, y);
     }
 }
