@@ -250,7 +250,7 @@ public class PlayManager {
         x = 35;
         y = top_y + 320;
         g2.setColor(Color.WHITE);
-        g2.setFont(new Font("New Courier", Font.ITALIC, 60));
+        g2.setFont(new Font("New Courier", Font.ITALIC, 40));
         g2.drawString("Tetris by Jasmin", x + 20, y);
     }
 }
