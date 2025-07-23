@@ -11,6 +11,7 @@ public class Mino {
     public Block tempB[] = new Block[4];
     int autoDropCounter = 0;
     public int direction = 1; // has 4 directions
+    boolean leftCollision, rightCollision, bottomCollision;
 
     public void create(Color c) {
         b[0] = new Block(c);
@@ -41,6 +42,35 @@ public class Mino {
     public void getDirection2() {}
     public void getDirection3() {}
     public void getDirection4() {}
+
+    public void checkMovementCollision() {
+
+        leftCollision = false;
+        rightCollision = false;
+        bottomCollision = false;
+
+        // frame collision checking
+        // left
+        for (int i = 0; i < b.length; i++) {
+            if (b[i].x == PlayManager.left_x) {
+                leftCollision = true;
+            }
+        }
+        // right
+        for (int i = 0; i < b.length; i++) {
+            if (b[i].x + Block.SIZE == PlayManager.right_x) {
+                rightCollision = true;
+            }
+        }
+        // bottom
+        for  (int i = 0; i < b.length; i++) {
+            if (b[i].y + Block.SIZE == PlayManager.bottom_y) {
+                bottomCollision = true;
+            }
+        }
+    }
+    public void checkRotationCollision() {}
+
     public void update() {
 
         // move mino
