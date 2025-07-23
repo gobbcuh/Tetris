@@ -38,6 +38,11 @@ public class PlayManager {
     int effectCounter;
     ArrayList<Integer> effectY = new ArrayList<>();
 
+    // score
+    int level = 1;
+    int lines;
+    int score;
+
     public PlayManager() {
 
         // main area frame
@@ -113,6 +118,7 @@ public class PlayManager {
         int x =left_x;
         int y = top_y;
         int blockCount = 0;
+        int lineCount = 0;
 
         while(x < right_x && y < bottom_y) {
 
@@ -137,6 +143,20 @@ public class PlayManager {
                         }
                     }
 
+                    lineCount++;
+                    lines++;
+
+                    if(lines % 10 == 0 && dropInterval > 1) {
+
+                        level++;
+                        if(dropInterval > 10) {
+                            dropInterval -= 10;
+                        }
+                        else {
+                            dropInterval -= 1;
+                        }
+                    }
+
                     for(int i = 0; i < staticBlocks.size(); i++) {
                         if(staticBlocks.get(i).y < y) {
                             staticBlocks.get(i).y += Block.SIZE;
@@ -148,6 +168,11 @@ public class PlayManager {
                 x = left_x;
                 y += Block.SIZE;
             }
+        }
+        // score
+        if(lineCount > 0) {
+            int singleLineScore = 10 * level;
+            score += singleLineScore * lineCount;
         }
     }
 
@@ -165,6 +190,14 @@ public class PlayManager {
         g2.setFont(new Font("Arial", Font.PLAIN, 30));
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.drawString("NEXT", x + 60, y + 60);
+
+        // drew score frame
+        g2.drawRect(x, top_y, 250, 300);
+        x += 40;
+        y = top_y + 90;
+        g2.drawString("LEVEL: " + level, x, y); y += 70;
+        g2.drawString("LINES: " + lines, x, y); y += 70;
+        g2.drawString("SCORE: " + score, x, y);
 
         // drew current mino
         if(currentMino != null) {
@@ -196,7 +229,7 @@ public class PlayManager {
         }
 
         // drew pause & game over
-        g2.setColor(Color.YELLOW);
+        g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(50f));
 
         if(gameOver) {
@@ -215,6 +248,6 @@ public class PlayManager {
         y = top_y + 320;
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("New Courier", Font.ITALIC, 60));
-        g2.drawString("Tetris by Jasmin", x, y);
+        g2.drawString("Tetris by Jasmin", x + 20, y);
     }
 }
